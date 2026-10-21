@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+body{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(images/stars.webp),
+    linear-gradient(180deg,#1F1826 0%,#44203A 40%,#8A345D 75%,#F08A6A 100%);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    
+}
+.container{
+    width: 600px;
+    height: fit-content;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.counter{
+    margin-top: 20px;
+    width: 85%;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+.one{
+    width: 75%;
+}
+.progress-parent{
+    width: 100%;
+    height: 7px;
+    background-color: #cccccc51;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.progress-child{
+    width: 0%;
+    height: 7px;
+    background-color: #8A345D;
+    border-radius: 10px;
+}
+.circle-progress{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #8A345D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    gap: 10px;
+}
+.input{
+    margin-top: 20px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.search{
+    width: 85%;
+    padding: 10px;
+    border-radius: 16px;
+    border: none;
+    outline: none;
+    background-color: #cccccc51;
+    color: white;
+}
+.add{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background-color: #cccccc51;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .3s;
+}
+.add:hover{
+    background-color: #cccccc77;
+}
+.tasks-card{
+    margin-top: 30px;
+    width: 95%;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+.tasks-card:hover{
+    scrollbar-color: #8A345D rgba(255,255,255,0.08);
+}
+.tasks-card::-webkit-scrollbar{
+    width: 5px;
+}
+.tasks-card::-webkit-scrollbar-track{
+    background: transparent;
+}
+.tasks-card::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.3);
+    border-radius: 20px;
+}
+.task{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #cccccc51;
+    border-radius: 25px;
+    color: white;
+    
+}
+.check{
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.337);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s;
+}
+.check:checked{
+    background-color: #8A345D;
+    border-color: #8A345D;
+    
+}
+.check:checked::before{
+    content: "✓";
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+.del{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background-color: #8a345eaf;
+    cursor: pointer;
+    transition: .2s;
+}
+.del:hover{
+    background-color: #8A345D;
+}
+
+
+
+
+@media (max-width:767px){
+    .container{
+        flex-grow: 1;
+    }
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="To-Do-List.css">
+    <link rel="stylesheet" href="framework.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>To DO List</title>
+</head>
+<body>
+
+
+    <div class="container">
+        <h1 class="c-white m-10">to-do app</h1>
+        <div class="counter">
+            <div class="one d-flex-c g-10">
+                <p class="c-white fw-b f-20">keep it up!</p>
+                <div class="progress-parent">
+                    <div class="progress-child"></div>
+                </div>
+            </div>
+            <div class="circle-progress">
+                <p class="done">0</p>
+                <span>/</span>
+                <p class="tasks-count">0</p>
+            </div>
+        </div>
+        <div class="input">
+            <input class="search" type="text">
+            <button class="add">+</button>
+        </div>
+        <div class="tasks-card">
+        </div>
+    </div>
+
+    <script>
+        let search = document.querySelector('.search');
+        let add = document.querySelector('.add');
+        let AllTaskes;
+        let TasksCard = document.querySelector('.tasks-card');
+        let TaskesCounter = document.querySelector('.tasks-count');
+        let ProgressBar = document.querySelector('.progress-child');
+         let donetask = document.querySelector('.done');
+        // للتأكد هل الذاكره فاضيه ولا لا
+        if(localStorage.Tasks){
+            AllTaskes = JSON.parse(localStorage.Tasks)
+        }
+        else{
+            AllTaskes = []
+        }
+        
+        // عند الضغط علي زرار الاضافه هيحصل اي
+        add.onclick = function(){
+            if(search.value != ''){
+                let NewTask = {
+                    name: search.value,
+                    done: false,
+                }
+                AllTaskes.push(NewTask);
+                localStorage.Tasks = JSON.stringify(AllTaskes)
+                search.value = ''
+                Create();
+            }
+            search.focus()
+            
+        }
+        // دالة انشاء التاسك
+        function Create(){
+            let task = '';
+            for(let i = 0 ; i < AllTaskes.length ; i++){
+                task += `
+                    <div class="task">
+                        <div class="d-flex f-wr g-10">
+                            <input onclick = 'check(${i})' class="check" type="checkbox" ${AllTaskes[i].done ? 'checked' : ''}>
+                            <p class = 'f-18'>${AllTaskes[i].name}</p>
+                        </div>
+                        <button onclick = 'Delete(${i})' class="del"><i class="fa-solid fa-trash c-white"></i></button>
+                    </div>
+                
+                `
+            }
+            TaskesCounter.innerHTML = AllTaskes.length
+            TasksCard.innerHTML= task
+            UpdateProgressBar();
+        }
+        Create();
+        // delete one task 
+        function Delete(i){
+            AllTaskes.splice(i,1);
+            localStorage.Tasks = JSON.stringify(AllTaskes);
+            Create();
+            
+        }
+        // input checked
+       
+        function check(i){
+          AllTaskes[i].done = !AllTaskes[i].done;
+          localStorage.Tasks = JSON.stringify(AllTaskes)
+          let checked = document.querySelectorAll('.check:checked').length;
+          donetask.innerHTML = checked;
+          Create();
+          
+        }
+
+        // progress bar
+       
+        function UpdateProgressBar(){
+            let checked = document.querySelectorAll('.check:checked').length;
+            donetask.innerHTML = checked;
+            let total = AllTaskes.length;
+            let percent = total === 0 ? 0 : (checked / total) * 100;
+            ProgressBar.style.width = percent + '%';
+        }
+        
+    </script>
+</body>
+</html>
