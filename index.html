@@ -71,11 +71,14 @@
             for(let i = 0 ; i < AllTaskes.length ; i++){
                 task += `
                     <div class="task">
-                        <div class="d-flex f-wr g-10">
-                            <input onclick = 'check(${i})' class="check" type="checkbox" ${AllTaskes[i].done ? 'checked' : ''}>
-                            <p class = 'f-18'>${AllTaskes[i].name}</p>
+                        <input onclick = 'check(${i})' class="check" type="checkbox" ${AllTaskes[i].done ? 'checked' : ''}>
+                        <div class="info d-flex f-wr g-10">
+                            <div class="task-data">
+                                <p class = 'f-18'>${AllTaskes[i].name}</p>
+                            </div>
+                            <button onclick = 'Delete(${i})' class="del"><i class="fa-solid fa-trash c-white"></i></button>
                         </div>
-                        <button onclick = 'Delete(${i})' class="del"><i class="fa-solid fa-trash c-white"></i></button>
+                        
                     </div>
                 
                 `
